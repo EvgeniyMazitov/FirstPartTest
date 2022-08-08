@@ -49,7 +49,7 @@ string[] FilterStringsArray(string[] stringArray)
         if ((stringArray[i]).Length <= fixLength) count++;
     }
     //Выделяем область памяти под новый массив строк    
-    string[] newArrayOfString = new string[stringArray.Length];
+    string[] newArrayOfString = new string[count];
     int j = 0;
     //Переносим в новый массив только те строки, длина которых не превышает 3
     for (int i = 0; i < stringArray.Length; i++)
