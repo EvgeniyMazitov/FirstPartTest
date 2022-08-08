@@ -2,11 +2,11 @@
 int GetNumber(string message)
 {
     int result = 0;
-    string errorMessage = "Вы ввели не число. Введите корректное число.";
+    string errorMessage = "Вы ввели не целое положительное число. Введите корректное число.";
     while (true)
     {
         Console.Write(message);
-        if (int.TryParse(Console.ReadLine(), out result))
+        if (int.TryParse(Console.ReadLine(), out result) && result > 0)
             break;
         else
         {
@@ -39,16 +39,22 @@ void PrintArray(string[] stringArray)
 //Метод получения нового массива с исключенными строками
 string[] FilterStringsArray(string[] stringArray)
 {
+    //Обнуляем счетчик количества строк    
     int count = 0;
+    //Задаем переменную для возможности быстрого изменения ограничения длины при необходимости
+    int fixLength = 3;
+    //Перебираем все строки массива и определяем сколько из них будет в новом массиве 
     for (int i = 0; i < stringArray.Length; i++)
     {
-        if ((stringArray[i]).Length > 3) count++;
+        if ((stringArray[i]).Length <= fixLength) count++;
     }
-    string[] newArrayOfString = new string[stringArray.Length - count];
+    //Выделяем область памяти под новый массив строк    
+    string[] newArrayOfString = new string[stringArray.Length];
     int j = 0;
+    //Переносим в новый массив только те строки, длина которых не превышает 3
     for (int i = 0; i < stringArray.Length; i++)
     {
-        if ((stringArray[i]).Length <= 3)
+        if ((stringArray[i]).Length <= fixLength)
         {
             newArrayOfString[j] = stringArray[i];
             j++;
